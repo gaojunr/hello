@@ -19,4 +19,5 @@ jobs:
         password: ${{ secrets.PASSWORD }}
         port: 22
         source: "target/release/hello"
-        target: "test"
+        target: "programe"
+        strip_components: 2
