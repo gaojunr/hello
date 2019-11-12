@@ -21,3 +21,13 @@ jobs:
         source: "target/release/hello"
         target: "programe"
         strip_components: 2
+    - name: Execute 
+      uses: appleboy/ssh-action@master
+      with:
+        host: ${{ secrets.HOST }}
+        username: ${{ secrets.USERNAME }}
+        password: ${{ secrets.PASSWORD }}
+        port: 22
+        script: |
+          ps -efww|grep -w 'hello'|grep -v grep|cut -c 9-15|xargs kill -9
+          /programe/hello
