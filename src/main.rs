@@ -11,17 +11,11 @@ fn main() {
 
     HttpServer::new(|| {
         App::new()
-            .route(
-                "/",
-                web::get().to(|req: HttpRequest| {
-                    let name = req.match_info().get("name").unwrap_or("World");
-                    format!("Hello1 {}!", &name)
-                }),
-            )
+            .route("/", web::get().to(greet))
             .route("/{name}", web::get().to(greet))
     })
-    .bind("0.0.0.0:8080")
-    .expect("Can not bind to port 8000")
+    .bind("0.0.0.0:8081")
+    .expect("Can not bind to port 8081")
     .run()
     .unwrap();
 }
